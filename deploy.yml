@@ -1,0 +1,16 @@
+---
+- name: Deploy College App
+  hosts: localhost
+  tasks:
+    - name: Ensure old container is removed
+      docker_container:
+        name: practical-container
+        state: absent
+
+    - name: Start the new container
+      docker_container:
+        name: practical-container
+        image: college-app
+        state: started
+        ports:
+          - "3000:3000"
